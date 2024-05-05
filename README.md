@@ -76,6 +76,15 @@ wsl --install -d Ubuntu-22.04
 
 Note: Before running the Docker image, make sure you are running both Docker and PowerShell as administrator, to access the Jupyter Server.
 
+## How to run a saved model
+
+To run a saved model from us, please follow the below steps:
+
+1. Create a folder, and put the `tf_model.h5` and `config.json` from our release into the folder
+2. Follow the [enviornment setup guide](#how-to-run-the-code-on-linux) above (You may skip the part of using a GPU, as the computation power required for running a saved model is way less)
+3. Open the `run_saved_model.ipynb` in the `src` folder, modify the `model_folder` path and the `decision_boundary` which can be found in the release description (The 2 variables are at the first cell)
+4. Run the `run_saved_model.ipynb` and check the result
+
 ## Bug acknowledgement and fix
 
 This problem only occurs when running the code with certain GPUs. If you're not experiencing this problem, or running this code with a CPU, ignore the following guidance.

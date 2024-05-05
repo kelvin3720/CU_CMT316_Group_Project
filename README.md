@@ -75,3 +75,18 @@ wsl --install -d Ubuntu-22.04
 3. Follow the steps [here](#enviornment-setup-with-docker-preferred) and run the `.ipynb` files.
 
 Note: Before running the Docker image, make sure you are running both Docker and PowerShell as administrator, to access the Jupyter Server.
+
+## Bug acknowledgement and fix
+
+This problem only occurs when running the code with certain GPUs. If you're not experiencing this problem, or running this code with a CPU, ignore the following guidance.
+
+During testing, it has been noted that on some machines (in this case, a machine with NVIDIA GeForce RTX 3050 Laptop GPU), the model will crash despite not utilising the device's full memory. It seems to be a problem with tensorflow's GPU allocator, as it has been noted that the default option does have problems with fragmentation, which can lead to crashes as described above. The fix for this is changing the GPU allocator to `cuda_malloc_async`. 
+
+If you experience such problems:
+
+1. Navigate to "Bug fix - uncomment only if you need it"
+2. Uncomment both of the required lines
+3. Restart Kernel and run all cells again
+
+If the problem of running out of memory still persists, run the code using a CPU. This will significantly increase the execution time, but there will be no risk of crashing.
+To achieve that, simply run the image without the `--gpus all` flag. This will prevent GPUs from being allocated and a CPU will be used instead.

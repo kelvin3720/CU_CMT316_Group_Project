@@ -163,5 +163,7 @@ cython_debug/
 
 # Saved model
 *.keras
+saved_model/
+save/
 
 .Trash-0/
